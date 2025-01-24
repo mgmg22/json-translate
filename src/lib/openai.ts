@@ -112,13 +112,13 @@ Remember: Return ONLY the translated JSON, nothing else.`;
       // 处理 SSE 格式数据
       const lines = chunk.split('\n');
       let content = '';
-      
+
       for (const line of lines) {
         if (line.startsWith('data: ')) {
           try {
             const jsonLine = line.slice(6); // 移除 'data: ' 前缀
             if (jsonLine === '[DONE]') continue;
-            
+
             const parsedData = JSON.parse(jsonLine);
             content += parsedData.choices[0]?.delta?.content || '';
           } catch (e) {

@@ -79,7 +79,7 @@ This project includes complete Product Requirements Documents in both English an
 ### Installation
 
 ```bash
-git clone https://github.com/ViggoZ/json-translate.git
+git clone https://github.com/mgmg22/json-translate.git
 ```
 
 ```bash
