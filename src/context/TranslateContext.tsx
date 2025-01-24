@@ -46,7 +46,7 @@ export function TranslateProvider({ children }: { children: React.ReactNode }) {
   const [cancelTranslation, setCancelTranslation] = useState(false)
   const [streamContent, setStreamContent] = useState('')
   const [translatedResults, setTranslatedResults] = useState<TranslatedResult[]>([])
-  const [selectedLangs, setSelectedLangs] = useState<string[]>(['en', 'de', 'ja', 'ru', 'tr', 'pt', 'es', 'fr', 'zh'])
+  const [selectedLangs, setSelectedLangs] = useState<string[]>(['de', 'es', 'fr',])
   const [currentTranslatingLang, setCurrentTranslatingLang] = useState<string | null>(null)
   const [totalProgress, setTotalProgress] = useState(0)
   const [estimatedTime, setEstimatedTime] = useState(0)
