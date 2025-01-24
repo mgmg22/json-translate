@@ -3,16 +3,11 @@
 import { useState, useEffect } from "react"
 import { useTranslate } from "@/context/TranslateContext"
 import { translate } from "@/lib/openai"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Checkbox } from "@/components/ui/checkbox"
 import { chunkJsonObject, mergeTranslatedChunks } from "@/lib/json-utils"
 import { ChevronDown, Languages, Loader2 } from "lucide-react"
-import { getDictionary } from "@/lib/getDictionary"
-import { validateApiKey } from "@/lib/openai"
 
 interface TranslatedResult {
   lang: string;
@@ -20,10 +15,24 @@ interface TranslatedResult {
 }
 
 const readFileContent = (file: File): Promise<string> => {
+  console.log('Starting file read', {
+    fileName: file.name,
+    fileSize: file.size,
+    fileType: file.type
+  });
+  
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = (e) => resolve(e.target?.result as string);
-    reader.onerror = (e) => reject(e);
+    reader.onload = (e) => {
+      console.log('File read completed', {
+        resultLength: e.target?.result?.toString().length
+      });
+      resolve(e.target?.result as string);
+    };
+    reader.onerror = (e) => {
+      console.error('File read error:', e);
+      reject(e);
+    };
     reader.readAsText(file);
   });
 };
@@ -35,7 +44,6 @@ interface TranslatePanelProps {
       translating: string;
       cancel: string;
       uploadFirst: string;
-      enterApiKey: string;
       showMoreLanguages: string;
       hideMoreLanguages: string;
       errorTitle: string;
@@ -56,12 +64,6 @@ interface TranslatePanelProps {
       kb: string;
       mb: string;
       gb: string;
-      apiKeyErrors: {
-        invalidFormat: string;
-        invalidOrExpired: string;
-        rateLimitReached: string;
-        validationFailed: string;
-      };
     }>;
     jsonPreview: {
       languages: Record<string, string>;
@@ -77,18 +79,13 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
   const [completedChunks, setCompletedChunks] = useState(0)
   const [showMoreLanguages, setShowMoreLanguages] = useState(false)
 
-  const { 
-    file, 
-    apiKey,
-    setApiKey,
+  const {
+    file,
     isTranslating,
     setIsTranslating,
-    setTranslatedContent,
-    progress,
     setProgress,
     cancelTranslation,
     setCancelTranslation,
-    streamContent,
     setStreamContent,
     translatedResults,
     setTranslatedResults,
@@ -97,12 +94,11 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
     currentTranslatingLang,
     setCurrentTranslatingLang,
     totalProgress,
-    estimatedTime,
     setTotalProgress,
     setEstimatedTime
   } = useTranslate()
 
-  type TranslatePanelKey = keyof typeof dict.translatePanel | 'apiKeyErrors.invalidFormat' | 'apiKeyErrors.invalidOrExpired' | 'apiKeyErrors.rateLimitReached' | 'apiKeyErrors.validationFailed';
+  type TranslatePanelKey = keyof typeof dict.translatePanel;
 
   const getTranslation = (key: TranslatePanelKey, defaultValue: string) => {
     if (key.includes('.')) {
@@ -124,7 +120,6 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
     translating: getTranslation("translating", "Translating..."),
     cancel: getTranslation("cancel", "Cancel"),
     uploadFirst: getTranslation("uploadFirst", "Please upload a file"),
-    enterApiKey: getTranslation("enterApiKey", "Please enter API Key"),
     errorTitle: getTranslation("errorTitle", "Error"),
     successTitle: getTranslation("successTitle", "Success"),
     translationCompleted: getTranslation("translationCompleted", "Translation Completed!"),
@@ -142,12 +137,6 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
     kb: "KB",
     mb: "MB",
     gb: "GB",
-    apiKeyErrors: {
-      invalidFormat: getTranslation("apiKeyErrors.invalidFormat", "Invalid API Key format"),
-      invalidOrExpired: getTranslation("apiKeyErrors.invalidOrExpired", "Invalid or expired API Key"),
-      rateLimitReached: getTranslation("apiKeyErrors.rateLimitReached", "API call limit reached"),
-      validationFailed: getTranslation("apiKeyErrors.validationFailed", "API Key validation failed")
-    }
   }
 
   // Common languages (top 20 most common languages)
@@ -220,10 +209,6 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
     { value: "am", label: translations.languages["am"] || "Amharic" }
   ];
 
-  const formatTime = (seconds: number) => {
-    if (seconds < 60) return `${Math.ceil(seconds)} seconds`
-    return `${Math.ceil(seconds / 60)} minutes`
-  }
 
   const handleTranslationError = (err: any) => {
     setError(err.message || "Translation failed");
@@ -235,59 +220,82 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
   }
 
   const handleTranslate = async () => {
-    if (!file || !apiKey) {
+    console.log('🚀 TRANSLATION STARTED 🚀');
+    console.group('Translation Process');
+    
+    if (!file) {
+      console.warn('❌ No file selected');
       toast({
         variant: "destructive",
         title: translations.errorTitle,
-        description: "Please upload a file and enter API Key"
+        description: translations.uploadFirst
       });
       return;
     }
 
-    // 添加API密钥验证
-    try {
-      await validateApiKey(apiKey);
-    } catch (err) {
-      let errorMessage = translations.apiKeyErrors.validationFailed;
-      
-      if (err instanceof Error) {
-        if (err.message.includes('format')) {
-          errorMessage = translations.apiKeyErrors.invalidFormat;
-        } else if (err.message.includes('expired')) {
-          errorMessage = translations.apiKeyErrors.invalidOrExpired;
-        } else if (err.message.includes('limit')) {
-          errorMessage = translations.apiKeyErrors.rateLimitReached;
-        }
-      }
-      
+    if (selectedLangs.length === 0) {
+      console.warn('❌ No languages selected');
       toast({
         variant: "destructive",
         title: translations.errorTitle,
-        description: errorMessage
+        description: "Please select at least one language"
       });
       return;
     }
+
+    console.log('Translation initialization', {
+      fileName: file.name,
+      fileSize: file.size,
+      selectedLangs,
+      isTranslating
+    });
 
     const controller = new AbortController();
+    console.log('Created AbortController');
+    
     setController(controller);
     setIsTranslating(true);
     setError("");
     setProgress(0);
     setCancelTranslation(false);
-
-    const startTime = Date.now();
     
+    console.log('States initialized for translation');
+
     try {
+      console.log('📁 Reading file:', file.name);
       const content = await readFileContent(file);
-      const jsonContent = JSON.parse(content);
+      console.log('📄 File content length:', content.length);
+
+      console.log('🔍 Parsing JSON...');
+      let jsonContent;
+      try {
+        jsonContent = JSON.parse(content);
+        console.log('✅ JSON parsed successfully', {
+          keys: Object.keys(jsonContent).length
+        });
+      } catch (e) {
+        console.error('JSON parse error:', e);
+        throw new Error('Invalid JSON format');
+      }
       
+      console.log('Checking saved progress...');
       const savedProgress = localStorage.getItem(`translation_progress_${file.name}`);
       const savedChunks = savedProgress ? JSON.parse(savedProgress) : {};
       
+      console.log('Chunking content...', {
+        contentLength: content.length,
+        savedChunks: Object.keys(savedChunks).length
+      });
+
       const chunks = chunkJsonObject(jsonContent, {
         maxKeys: 50,
         maxSize: 4000,
         preserveStructure: true
+      });
+
+      console.log('Content chunked', {
+        totalChunks: chunks.length,
+        selectedLangs: selectedLangs.length
       });
       
       const calculatedTotalChunks = chunks.length * selectedLangs.length;
@@ -296,15 +304,14 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
       setCompletedChunks(currentCompletedChunks);
       
       const results: TranslatedResult[] = [...translatedResults];
-      
+
       // Get languages that have been completely translated
+      console.log('Checking completed languages...');
       const completedLangs = translatedResults
         .filter(result => {
           try {
-            // Check if the translation content is complete
             const translatedContent = JSON.parse(result.content);
             const originalContent = JSON.parse(content);
-            // Compare the number of keys to determine if it's completely translated
             return Object.keys(translatedContent).length === Object.keys(originalContent).length;
           } catch {
             return false;
@@ -312,11 +319,18 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
         })
         .map(result => result.lang);
 
+      console.log('Translation status:', {
+        completedLangs,
+        selectedLangs,
+        translatedResults: translatedResults.length
+      });
+
       // Filter out languages that haven't been translated
       const remainingLangs = selectedLangs.filter(lang => !completedLangs.includes(lang));
 
       // If all selected languages are already translated
       if (remainingLangs.length === 0) {
+        console.log('All selected languages already translated');
         toast({
           title: translations.tip,
           description: translations.allLanguagesTranslated
@@ -324,10 +338,16 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
         return;
       }
 
+      console.log('Starting translation for remaining languages:', remainingLangs);
+
       // Only translate languages that haven't been completed
       for (const lang of remainingLangs) {
-        if (cancelTranslation) break;
+        if (cancelTranslation) {
+          console.log('Translation cancelled');
+          break;
+        }
         
+        console.log(`Translating language: ${lang}`);
         setCurrentTranslatingLang(lang);
         const translatedChunks: Record<string, any>[] = [];
         const savedLangChunks = savedChunks[lang] || [];
@@ -353,16 +373,14 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
         }
 
         for (let i = savedLangChunks.length; i < chunks.length; i++) {
-          if (cancelTranslation) {
-            break
-          }
+          if (cancelTranslation) break;
           
           try {
+            console.log(`🌐 Starting translation for chunk ${i + 1}/${chunks.length} for ${lang}`);
             const chunk = chunks[i]
             const translatedChunk = await translate(
               JSON.stringify(chunk),
               lang,
-              apiKey,
               controller.signal,
               (progress) => {
                 const singleChunkProgress = progress / 100
@@ -397,12 +415,12 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
                 } catch (error) {
                   // 如果是取消操作，忽略错误
                   if (cancelTranslation) return
-                  
+
                   console.warn('Stream content parse error:', error)
                 }
               }
             )
-            
+
             // 如果翻译被取消，跳出循环
             if (!translatedChunk || cancelTranslation) {
               break
@@ -410,7 +428,7 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
 
             const parsedChunk = JSON.parse(translatedChunk)
             translatedChunks.push(parsedChunk)
-            
+
             currentLangContent = mergeTranslatedChunks([
               currentLangContent,
               parsedChunk
@@ -429,16 +447,17 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
               })
             }
             setTranslatedResults([...results])
-            
+
             savedChunks[lang] = translatedChunks
             localStorage.setItem(
               `translation_progress_${file.name}`,
               JSON.stringify(savedChunks)
             )
-            
+
             currentCompletedChunks++
             setCompletedChunks(currentCompletedChunks)
           } catch (error) {
+            console.error('Chunk translation error:', error);
             // 如果是取消操作，跳出循环
             if (cancelTranslation || (error instanceof DOMException && error.name === 'AbortError')) {
               break
@@ -461,13 +480,21 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
       }
       
     } catch (err) {
+      console.error('❌ TRANSLATION ERROR:', err);
       handleTranslationError(err);
     } finally {
+      console.groupEnd();
+      console.log('🏁 TRANSLATION COMPLETED 🏁');
+      console.log('=== handleTranslate completed ===', {
+        isTranslating: false,
+        currentTranslatingLang: null,
+        completedChunks: 0
+      });
       setIsTranslating(false);
       setProgress(0);
       setStreamContent('');
       setCurrentTranslatingLang(null);
-      setEstimatedTime(0); // Reset estimated time
+      setEstimatedTime(0);
       setCompletedChunks(0);
     }
   };
@@ -562,13 +589,12 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
         <div className="grid grid-cols-3 gap-2 mt-1">
           {/* Common languages */}
           {commonLanguages.map(option => (
-            <label 
-              key={option.value} 
-              className={`flex items-center justify-center px-4 py-2 rounded-full cursor-pointer transition-colors text-sm ${
-                selectedLangs.includes(option.value) 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-muted hover:bg-muted/80'
-              }`}
+            <label
+              key={option.value}
+              className={`flex items-center justify-center px-4 py-2 rounded-full cursor-pointer transition-colors text-sm ${selectedLangs.includes(option.value)
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted hover:bg-muted/80'
+                }`}
             >
               <input
                 type="checkbox"
@@ -593,12 +619,12 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
           className="mt-4 w-full rounded-full shadow-none border-none"
           onClick={() => setShowMoreLanguages(!showMoreLanguages)}
         >
-          {showMoreLanguages 
-            ? translations.hideMoreLanguages 
+          {showMoreLanguages
+            ? translations.hideMoreLanguages
             : translations.showMoreLanguages
           }
-          <ChevronDown 
-            className={`ml-2 h-4 w-4 transform ${showMoreLanguages ? "rotate-180" : ""}`} 
+          <ChevronDown
+            className={`ml-2 h-4 w-4 transform ${showMoreLanguages ? "rotate-180" : ""}`}
           />
         </Button>
 
@@ -606,13 +632,12 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
         {showMoreLanguages && (
           <div className="grid grid-cols-3 gap-2 mt-2">
             {moreLanguages.map(option => (
-              <label 
-                key={option.value} 
-                className={`flex items-center justify-center px-4 py-2 rounded-full cursor-pointer transition-colors text-sm ${
-                  selectedLangs.includes(option.value) 
-                    ? 'bg-primary text-primary-foreground' 
-                    : 'bg-muted hover:bg-muted/80'
-                }`}
+              <label
+                key={option.value}
+                className={`flex items-center justify-center px-4 py-2 rounded-full cursor-pointer transition-colors text-sm ${selectedLangs.includes(option.value)
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted hover:bg-muted/80'
+                  }`}
               >
                 <input
                   type="checkbox"
@@ -645,7 +670,7 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
             </div>
             <Progress value={totalProgress} className="w-full" />
           </div>
-          
+
           {currentTranslatingLang && (
             <div className="text-sm text-muted-foreground">
               {translations.translatingLanguage}: {
@@ -657,10 +682,28 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
       )}
 
       <div className="flex gap-2">
-        <Button 
-          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg font-medium rounded-full shadow-none" 
+        <Button
+          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg font-medium rounded-full shadow-none"
           onClick={() => {
+            console.log('🟦 BUTTON CLICKED 🟦');
+            console.group('Translation Button Click Details');
+            console.log('File:', {
+              exists: !!file,
+              name: file?.name,
+              size: file?.size
+            });
+            console.log('Languages:', {
+              selected: selectedLangs,
+              count: selectedLangs.length
+            });
+            console.log('State:', {
+              isTranslating,
+              translatedResults: translatedResults.length
+            });
+            console.groupEnd();
+
             if (!file) {
+              console.warn('❌ No file selected');
               toast({
                 variant: "destructive",
                 title: translations.errorTitle,
@@ -668,17 +711,18 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
               });
               return;
             }
-            if (!apiKey) {
-              toast({
-                variant: "destructive", 
-                title: translations.errorTitle,
-                description: translations.enterApiKey
-              });
+
+            if (selectedLangs.length === 0) {
+              console.warn('❌ No languages selected');
               return;
             }
+
             if (isTranslating) {
+              console.warn('⚠️ Already translating');
               return;
             }
+
+            console.log('✨ Initiating translation...');
             handleTranslate();
           }}
         >
@@ -706,7 +750,6 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
         )}
       </div>
 
-      
     </div>
   )
 } 
