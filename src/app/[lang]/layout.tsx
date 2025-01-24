@@ -4,7 +4,7 @@ import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import { TranslateProvider } from "@/context/TranslateContext";
-import { locales, defaultLocale } from "@/config/i18n";
+import { locales } from "@/config/i18n";
 import { notFound } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
@@ -32,7 +32,7 @@ export async function generateMetadata(
   { params }: Pick<LayoutProps, 'params'>
 ): Promise<Metadata> {
   const lang = params.lang
-  
+
   // 导入对应语言的字典
   const dict = await import(`@/dictionaries/${params.lang}.json`).then(
     (module) => module.default

@@ -5,7 +5,7 @@ import { FileUpload } from '@/components/FileUpload'
 import { TranslatePanel } from '@/components/TranslatePanel'
 import { FileIcon, Languages } from 'lucide-react'
 import { WorkflowSection } from '@/components/sections/WorkflowSection'
-import { FeaturesSection } from '@/components/sections/FeaturesSection' 
+import { FeaturesSection } from '@/components/sections/FeaturesSection'
 import { CTASection } from '@/components/sections/CTASection'
 import FAQ from '@/components/sections/FAQ'
 
@@ -16,7 +16,7 @@ export default async function Home({
 }) {
   const lang = await params.lang
   const dict = await getDictionary(lang)
-  
+
   return (
     <div className="min-h-screen bg-background">
       <HeroSection dict={dict.hero} />
@@ -82,7 +82,7 @@ export default async function Home({
             </div>
           </div>
         </div>
-        
+
         <WorkflowSection dict={dict.workflow} />
         <FeaturesSection dict={dict.features} />
         <FAQ dict={dict.faq} />

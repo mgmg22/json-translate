@@ -24,8 +24,8 @@ export function FeaturesSection({ dict }: FeaturesSectionProps) {
     <Shield className="w-8 h-8" key="shield" />
   ]
 
-  const features = Array.isArray(dict.items) 
-    ? dict.items 
+  const features = Array.isArray(dict.items)
+    ? dict.items
     : Object.values(dict.items || {})
 
   return (

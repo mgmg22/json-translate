@@ -1,13 +1,11 @@
 "use client"
 
 import { useTranslate } from "@/context/TranslateContext"
-import { useState, useEffect, memo, useRef } from "react"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { useState, useEffect, useRef } from "react"
 import { Button } from "./ui/button"
-import { CopyIcon, ExpandIcon, ShrinkIcon, DownloadIcon } from "lucide-react"
+import { CopyIcon, DownloadIcon } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import JSZip from 'jszip'
 import dynamic from 'next/dynamic';
 
@@ -130,12 +128,12 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
   const formatJson = (jsonString: string) => {
     try {
       // If the JSON string is empty or a prompt text, return it directly
-      if (!jsonString || 
-          jsonString === 'Please upload a JSON file' || 
-          jsonString === 'Translation results will be displayed here') {
+      if (!jsonString ||
+        jsonString === 'Please upload a JSON file' ||
+        jsonString === 'Translation results will be displayed here') {
         return jsonString;
       }
-      
+
       // Handle streaming output
       if (isTranslating) {
         try {
@@ -151,7 +149,7 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
             .join(',\n  ');
         }
       }
-      
+
       // Non-streaming output, parse and format normally
       const parsed = JSON.parse(jsonString);
       return JSON.stringify(parsed, null, 2);
@@ -186,7 +184,7 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `translated_${lang}.json`
+      a.download = `${lang}.json`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
@@ -195,7 +193,7 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
       toast({
         title: "Success",
         description: translations.toast.downloadSuccess.replace(
-          '{lang}', 
+          '{lang}',
           translations.languages[lang] || lang
         )
       })
@@ -212,9 +210,9 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
     try {
       const zip = new JSZip()
       translatedResults.forEach(result => {
-        zip.file(`translated_${result.lang}.json`, result.content)
+        zip.file(`${result.lang}.json`, result.content)
       })
-      
+
       zip.generateAsync({ type: "blob" }).then(content => {
         const url = URL.createObjectURL(content)
         const a = document.createElement('a')
@@ -224,7 +222,7 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
         a.click()
         document.body.removeChild(a)
         URL.revokeObjectURL(url)
-        
+
         toast({
           title: "Success",
           description: translations.toast.downloadAllSuccess
@@ -299,7 +297,7 @@ export const JsonPreview: React.FC<JsonPreviewProps> = ({ dict }) => {
               >
                 <DownloadIcon className="h-4 w-4" />
                 {translations.actions.downloadFormat.replace(
-                  '{lang}', 
+                  '{lang}',
                   translations.languages[activeTab] || activeTab
                 )}
               </Button>

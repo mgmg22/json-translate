@@ -22,8 +22,8 @@ interface FAQProps {
 export default function FAQ({ dict }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const faqs = Array.isArray(dict.items) 
-    ? dict.items 
+  const faqs = Array.isArray(dict.items)
+    ? dict.items
     : Object.values(dict.items)
 
   return (
@@ -50,16 +50,14 @@ export default function FAQ({ dict }: FAQProps) {
               >
                 <span className="font-semibold">{faq.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 transition-transform ${openIndex === index ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
-              
+
               <div
-                className={`px-6 transition-all duration-200 ease-in-out ${
-                  openIndex === index ? 'py-4' : 'py-0 h-0'
-                }`}
+                className={`px-6 transition-all duration-200 ease-in-out ${openIndex === index ? 'py-4' : 'py-0 h-0'
+                  }`}
               >
                 <p className="text-gray-600 whitespace-pre-line">
                   {faq.answer}
