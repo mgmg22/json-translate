@@ -42,7 +42,7 @@ export async function generateMetadata(
   const languageAlternates = {
     'en': '/en',
     'zh': '/zh',
-    'zh-TW': '/zh-TW',
+    'tw': '/tw',
     'ja': '/ja',
     'ko': '/ko',
     'fr': '/fr',

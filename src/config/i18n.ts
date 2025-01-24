@@ -1,11 +1,11 @@
 export const defaultLocale = 'en'
 
-export const locales = ['en', 'zh', 'zh-TW', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'it', 'ru', 'ar', 'el', 'nl', 'id', 'pl', 'th', 'tr', 'vi']
+export const locales = ['en', 'zh', 'tw', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'it', 'ru', 'ar', 'el', 'nl', 'id', 'pl', 'th', 'tr', 'vi']
 
 export const localeNames = {
   en: 'English',
   zh: '简体中文',
-  'zh-TW': '繁體中文',
+  tw: '繁體中文',
   ja: '日本語',
   ko: '한국어',
   fr: 'Français',
@@ -33,7 +33,7 @@ export const localeConfigs = {
     label: '简体中文',
     dir: 'ltr'
   },
-  'zh-TW': {
+  tw: {
     label: '繁體中文',
     dir: 'ltr'
   },

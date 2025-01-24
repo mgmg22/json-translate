@@ -17,7 +17,7 @@ const dictionaries = {
   th: () => import('@/dictionaries/th.json').then(module => module.default),
   tr: () => import('@/dictionaries/tr.json').then(module => module.default),
   vi: () => import('@/dictionaries/vi.json').then(module => module.default),
-  'zh-TW': () => import('@/dictionaries/zh-TW.json').then(module => module.default),
+  tw: () => import('@/dictionaries/tw.json').then(module => module.default),
 }
 
 export const getDictionary = async (locale: string) => {
