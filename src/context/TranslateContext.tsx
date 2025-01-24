@@ -12,8 +12,6 @@ interface TranslateContextType {
   setFile: (file: File | null) => void
   sourceLang: string
   setSourceLang: (lang: string) => void
-  apiKey: string
-  setApiKey: (key: string) => void
   isTranslating: boolean
   setIsTranslating: (status: boolean) => void
   translatedContent: string
@@ -42,7 +40,6 @@ const TranslateContext = createContext<TranslateContextType | undefined>(undefin
 export function TranslateProvider({ children }: { children: React.ReactNode }) {
   const [file, setFile] = useState<File | null>(null)
   const [sourceLang, setSourceLang] = useState('en')
-  const [apiKey, setApiKey] = useState('')
   const [isTranslating, setIsTranslating] = useState(false)
   const [translatedContent, setTranslatedContent] = useState('')
   const [progress, setProgress] = useState(0)
@@ -69,8 +66,6 @@ export function TranslateProvider({ children }: { children: React.ReactNode }) {
     setFile,
     sourceLang,
     setSourceLang,
-    apiKey,
-    setApiKey,
     isTranslating,
     setIsTranslating,
     translatedContent,

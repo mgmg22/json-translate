@@ -56,7 +56,6 @@
     "description": "Çeviri için JSON dosyanızı yükleyin",
     "dragText": "Dosyaları buraya sürükleyin veya yüklemek için tıklayın",
     "supportText": ".json format dosyalarını destekler, en fazla 10MB",
-    "apiKeyTip": "İpucu: Çeviri için OpenAI API Anahtarı gereklidir",
     "errors": {
       "selectFile": "Lütfen bir dosya seçin",
       "jsonExtension": "Lütfen .json uzantılı bir dosya yükleyin",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Dosya başarıyla yüklendi"
     },
-    "apiKeyTitle": "OpenAI API Anahtarı",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Hata",
     "successTitle": "Başarılı"
   },
@@ -81,11 +78,9 @@
     "translating": "Çeviri yapılıyor...",
     "cancel": "İptal",
     "uploadFirst": "Lütfen önce bir dosya yükleyin",
-    "enterApiKey": "Lütfen API Anahtarını girin",
     "foundUnfinished": "Tamamlanmamış çeviri bulundu",
     "continueTranslation": "Çeviriye devam et",
     "translationCancelled": "Çeviri iptal edildi",
-    "invalidApiKey": "Geçersiz API Anahtarı formatı",
     "errorTitle": "Hata",
     "successTitle": "Başarı",
     "translationCompleted": "Çeviri tamamlandı!",
@@ -103,13 +98,7 @@
     "bytes": "Bayt",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Geçersiz API anahtarı formatı",
-      "invalidOrExpired": "Geçersiz veya süresi dolmuş API anahtarı",
-      "rateLimitReached": "API çağrı limiti aşıldı",
-      "validationFailed": "API anahtarı doğrulaması başarısız oldu"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Önizleme",

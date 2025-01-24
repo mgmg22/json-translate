@@ -56,7 +56,6 @@
     "description": "Upload uw JSON-bestand voor vertaling",
     "dragText": "Sleep bestanden hierheen of klik om te uploaden",
     "supportText": "Ondersteunt .json-bestandsindelingen, tot 10MB",
-    "apiKeyTip": "Tips: OpenAI API-sleutel is vereist voor vertaling",
     "errors": {
       "selectFile": "Selecteer alstublieft een bestand",
       "jsonExtension": "Upload alstublieft een bestand met een .json-extensie",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Bestand succesvol geüpload"
     },
-    "apiKeyTitle": "OpenAI API-sleutel",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Fout",
     "successTitle": "Succes"
   },
@@ -81,11 +78,9 @@
     "translating": "Bezig met vertalen...",
     "cancel": "Annuleren",
     "uploadFirst": "Upload eerst een bestand",
-    "enterApiKey": "Voer alstublieft API-sleutel in",
     "foundUnfinished": "Onvoltooide vertaling gevonden",
     "continueTranslation": "Vervolg vertaling",
     "translationCancelled": "Vertaling geannuleerd",
-    "invalidApiKey": "Ongeldig API-sleutel formaat",
     "errorTitle": "Fout",
     "successTitle": "Succes",
     "translationCompleted": "Vertaling voltooid!",
@@ -103,13 +98,7 @@
     "bytes": "Bytes",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Ongeldig API-sleutelformaat",
-      "invalidOrExpired": "Ongeldige of verlopen API-sleutel",
-      "rateLimitReached": "API-aanroeplimiet bereikt",
-      "validationFailed": "API-sleutelvalidatie mislukt"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Voorbeeld",

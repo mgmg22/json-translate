@@ -56,7 +56,6 @@
     "description": "上傳您的 JSON 文件以進行翻譯",
     "dragText": "將文件拖到這裡或點擊上傳",
     "supportText": "支持 .json 格式文件，最大 10MB",
-    "apiKeyTip": "提示：翻譯需要 OpenAI API 密鑰",
     "errors": {
       "selectFile": "請選擇一個文件",
       "jsonExtension": "請上傳一個 .json 擴展名的文件",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "文件上傳成功"
     },
-    "apiKeyTitle": "OpenAI API 密鑰",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "錯誤",
     "successTitle": "成功"
   },
@@ -81,11 +78,9 @@
     "translating": "翻譯中...",
     "cancel": "取消",
     "uploadFirst": "請先上傳文件",
-    "enterApiKey": "請輸入 API 密鑰",
     "foundUnfinished": "發現未完成的翻譯",
     "continueTranslation": "繼續翻譯",
     "translationCancelled": "翻譯已取消",
-    "invalidApiKey": "無效的 API 密鑰格式",
     "errorTitle": "錯誤",
     "successTitle": "成功",
     "translationCompleted": "翻譯完成！",
@@ -103,13 +98,7 @@
     "bytes": "位元組",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "無效的 API 密鑰格式",
-      "invalidOrExpired": "無效或已過期的 API 密鑰",
-      "rateLimitReached": "API 調用次數已達上限",
-      "validationFailed": "API 密鑰驗證失敗"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "預覽",

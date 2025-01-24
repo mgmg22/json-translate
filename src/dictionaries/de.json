@@ -56,7 +56,6 @@
     "description": "Laden Sie Ihre JSON-Datei zur Übersetzung hoch",
     "dragText": "Dateien hierher ziehen oder klicken, um hochzuladen",
     "supportText": "Unterstützt .json-Formatdateien, bis zu 10MB",
-    "apiKeyTip": "Hinweis: OpenAI API-Schlüssel ist für die Übersetzung erforderlich",
     "errors": {
       "selectFile": "Bitte wählen Sie eine Datei aus",
       "jsonExtension": "Bitte laden Sie eine Datei mit der .json-Erweiterung hoch",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Datei erfolgreich hochgeladen"
     },
-    "apiKeyTitle": "OpenAI API-Schlüssel",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Fehler",
     "successTitle": "Erfolg"
   },
@@ -81,11 +78,9 @@
     "translating": "Übersetzung läuft...",
     "cancel": "Abbrechen",
     "uploadFirst": "Bitte laden Sie zuerst eine Datei hoch",
-    "enterApiKey": "Bitte geben Sie den API-Schlüssel ein",
     "foundUnfinished": "Unvollständige Übersetzung gefunden",
     "continueTranslation": "Übersetzung fortsetzen",
     "translationCancelled": "Übersetzung abgebrochen",
-    "invalidApiKey": "Ungültiges API-Schlüssel-Format",
     "errorTitle": "Fehler",
     "successTitle": "Erfolg",
     "translationCompleted": "Übersetzung abgeschlossen!",
@@ -103,13 +98,7 @@
     "bytes": "Bytes",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Ungültiges API-Schlüssel-Format",
-      "invalidOrExpired": "Ungültiger oder abgelaufener API-Schlüssel",
-      "rateLimitReached": "API-Aufrufslimit erreicht",
-      "validationFailed": "API-Schlüssel-Validierung fehlgeschlagen"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Vorschau",

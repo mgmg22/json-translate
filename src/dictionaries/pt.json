@@ -56,7 +56,6 @@
     "description": "Carregue seu arquivo JSON para tradução",
     "dragText": "Arraste arquivos aqui ou clique para carregar",
     "supportText": "Suporta arquivos no formato .json, até 10MB",
-    "apiKeyTip": "Dicas: A Chave da API OpenAI é necessária para tradução",
     "errors": {
       "selectFile": "Por favor, selecione um arquivo",
       "jsonExtension": "Por favor, carregue um arquivo com a extensão .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Arquivo carregado com sucesso"
     },
-    "apiKeyTitle": "Chave da API OpenAI",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Erro",
     "successTitle": "Sucesso"
   },
@@ -81,11 +78,9 @@
     "translating": "Traduzindo...",
     "cancel": "Cancelar",
     "uploadFirst": "Por favor, carregue um arquivo primeiro",
-    "enterApiKey": "Por favor, insira a Chave da API",
     "foundUnfinished": "Encontrada tradução inacabada",
     "continueTranslation": "Continuar tradução",
     "translationCancelled": "Tradução cancelada",
-    "invalidApiKey": "Formato da Chave da API inválido",
     "errorTitle": "Erro",
     "successTitle": "Sucesso",
     "translationCompleted": "Tradução concluída!",
@@ -103,13 +98,7 @@
     "bytes": "Bytes",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Formato de chave API inválido",
-      "invalidOrExpired": "Chave API inválida ou expirada",
-      "rateLimitReached": "Limite de chamadas API atingido",
-      "validationFailed": "Falha na validação da chave API"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Pré-visualização",

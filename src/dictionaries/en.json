@@ -56,7 +56,6 @@
     "description": "Upload your JSON file for translation",
     "dragText": "Drag files here or click to upload",
     "supportText": "Supports .json format files, up to 10MB",
-    "apiKeyTip": "Tips: OpenAI API Key is required for translation",
     "errors": {
       "selectFile": "Please select a file",
       "jsonExtension": "Please upload a file with a .json extension",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "File uploaded successfully"
     },
-    "apiKeyTitle": "OpenAI API Key",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Error",
     "successTitle": "Success"
   },
@@ -81,11 +78,9 @@
     "translating": "Translating...",
     "cancel": "Cancel",
     "uploadFirst": "Please upload a file first",
-    "enterApiKey": "Please enter API Key",
     "foundUnfinished": "Found unfinished translation",
     "continueTranslation": "Continue translation",
     "translationCancelled": "Translation cancelled",
-    "invalidApiKey": "Invalid API Key format",
     "errorTitle": "Error",
     "successTitle": "Success",
     "translationCompleted": "Translation completed!",
@@ -103,13 +98,7 @@
     "bytes": "Bytes",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Invalid API key format",
-      "invalidOrExpired": "Invalid or expired API key",
-      "rateLimitReached": "API rate limit reached",
-      "validationFailed": "API key validation failed"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Preview",

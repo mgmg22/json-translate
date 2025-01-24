@@ -56,7 +56,6 @@
     "description": "Загрузите ваш файл JSON для перевода",
     "dragText": "Перетащите файлы сюда или щелкните для загрузки",
     "supportText": "Поддерживает файлы формата .json, до 10 МБ",
-    "apiKeyTip": "Советы: Для перевода требуется ключ API OpenAI",
     "errors": {
       "selectFile": "Пожалуйста, выберите файл",
       "jsonExtension": "Пожалуйста, загрузите файл с расширением .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Файл успешно загружен"
     },
-    "apiKeyTitle": "Ключ API OpenAI",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Ошибка",
     "successTitle": "Успех"
   },
@@ -81,11 +78,9 @@
     "translating": "Переводим...",
     "cancel": "Отмена",
     "uploadFirst": "Пожалуйста, сначала загрузите файл",
-    "enterApiKey": "Пожалуйста, введите ключ API",
     "foundUnfinished": "Найден незавершенный перевод",
     "continueTranslation": "Продолжить перевод",
     "translationCancelled": "Перевод отменен",
-    "invalidApiKey": "Неверный формат ключа API",
     "errorTitle": "Ошибка",
     "successTitle": "Успех",
     "translationCompleted": "Перевод завершен!",
@@ -103,13 +98,7 @@
     "bytes": "Байты",
     "kb": "КБ",
     "mb": "МБ",
-    "gb": "ГБ",
-    "apiKeyErrors": {
-      "invalidFormat": "Неверный формат API ключа",
-      "invalidOrExpired": "Недействительный или просроченный API ключ",
-      "rateLimitReached": "Достигнут лимит вызовов API",
-      "validationFailed": "Ошибка проверки API ключа"
-    }
+    "gb": "ГБ"
   },
   "jsonPreview": {
     "title": "Предварительный просмотр",

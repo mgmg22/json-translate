@@ -56,7 +56,6 @@
     "description": "Ανεβάστε το αρχείο JSON σας για μετάφραση",
     "dragText": "Σύρετε αρχεία εδώ ή κάντε κλικ για να ανεβάσετε",
     "supportText": "Υποστηρίζει αρχεία μορφής .json, έως 10MB",
-    "apiKeyTip": "Συμβουλές: Απαιτείται το OpenAI API Key για τη μετάφραση",
     "errors": {
       "selectFile": "Παρακαλώ επιλέξτε ένα αρχείο",
       "jsonExtension": "Παρακαλώ ανεβάστε ένα αρχείο με κατάληξη .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Το αρχείο ανέβηκε με επιτυχία"
     },
-    "apiKeyTitle": "OpenAI API Key",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Σφάλμα",
     "successTitle": "Επιτυχία"
   },
@@ -81,11 +78,9 @@
     "translating": "Μετάφραση...",
     "cancel": "Ακύρωση",
     "uploadFirst": "Παρακαλώ ανεβάστε πρώτα ένα αρχείο",
-    "enterApiKey": "Παρακαλώ εισάγετε το API Key",
     "foundUnfinished": "Βρέθηκε ημιτελής μετάφραση",
     "continueTranslation": "Συνεχίστε τη μετάφραση",
     "translationCancelled": "Η μετάφραση ακυρώθηκε",
-    "invalidApiKey": "Μη έγκυρη μορφή API Key",
     "errorTitle": "Σφάλμα",
     "successTitle": "Επιτυχία",
     "translationCompleted": "Η μετάφραση ολοκληρώθηκε!",
@@ -103,13 +98,7 @@
     "bytes": "Bytes",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Μη έγκυρη μορφή κλειδιού API",
-      "invalidOrExpired": "Μη έγκυρο ή ληγμένο κλειδί API",
-      "rateLimitReached": "Επιτεύχθηκε το όριο κλήσεων API",
-      "validationFailed": "Αποτυχία επικύρωσης κλειδιού API"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Προεπισκόπηση",

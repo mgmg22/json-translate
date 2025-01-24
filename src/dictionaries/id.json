@@ -56,7 +56,6 @@
     "description": "Unggah berkas JSON Anda untuk terjemahan",
     "dragText": "Seret berkas ke sini atau klik untuk mengunggah",
     "supportText": "Mendukung berkas format .json, hingga 10MB",
-    "apiKeyTip": "Tips: Kunci API OpenAI diperlukan untuk terjemahan",
     "errors": {
       "selectFile": "Silakan pilih berkas",
       "jsonExtension": "Silakan unggah berkas dengan ekstensi .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Berkas berhasil diunggah"
     },
-    "apiKeyTitle": "Kunci API OpenAI",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Kesalahan",
     "successTitle": "Sukses"
   },
@@ -81,11 +78,9 @@
     "translating": "Sedang Menerjemahkan...",
     "cancel": "Batal",
     "uploadFirst": "Silakan unggah berkas terlebih dahulu",
-    "enterApiKey": "Silakan masukkan Kunci API",
     "foundUnfinished": "Ditemukan terjemahan yang belum selesai",
     "continueTranslation": "Lanjutkan terjemahan",
     "translationCancelled": "Terjemahan dibatalkan",
-    "invalidApiKey": "Format Kunci API tidak valid",
     "errorTitle": "Kesalahan",
     "successTitle": "Sukses",
     "translationCompleted": "Terjemahan selesai!",
@@ -103,13 +98,7 @@
     "bytes": "Byte",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Format kunci API tidak valid",
-      "invalidOrExpired": "Kunci API tidak valid atau kedaluwarsa",
-      "rateLimitReached": "Batas pemanggilan API tercapai",
-      "validationFailed": "Validasi kunci API gagal"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Pratampilan",

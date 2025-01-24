@@ -56,7 +56,6 @@
     "description": "Prześlij swój plik JSON do tłumaczenia",
     "dragText": "Przeciągnij pliki tutaj lub kliknij, aby przesłać",
     "supportText": "Obsługuje pliki w formacie .json, do 10MB",
-    "apiKeyTip": "Wskazówki: Klucz API OpenAI jest wymagany do tłumaczenia",
     "errors": {
       "selectFile": "Proszę wybrać plik",
       "jsonExtension": "Proszę przesłać plik z rozszerzeniem .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "Plik przesłany pomyślnie"
     },
-    "apiKeyTitle": "Klucz API OpenAI",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "Błąd",
     "successTitle": "Sukces"
   },
@@ -81,11 +78,9 @@
     "translating": "Tłumaczenie...",
     "cancel": "Anuluj",
     "uploadFirst": "Proszę najpierw przesłać plik",
-    "enterApiKey": "Proszę wprowadzić klucz API",
     "foundUnfinished": "Znaleziono niedokończone tłumaczenie",
     "continueTranslation": "Kontynuuj tłumaczenie",
     "translationCancelled": "Tłumaczenie anulowane",
-    "invalidApiKey": "Nieprawidłowy format klucza API",
     "errorTitle": "Błąd",
     "successTitle": "Sukces",
     "translationCompleted": "Tłumaczenie zakończone!",
@@ -103,13 +98,7 @@
     "bytes": "Bajty",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "Nieprawidłowy format klucza API",
-      "invalidOrExpired": "Nieprawidłowy lub wygasły klucz API",
-      "rateLimitReached": "Osiągnięto limit wywołań API",
-      "validationFailed": "Weryfikacja klucza API nie powiodła się"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "Podgląd",

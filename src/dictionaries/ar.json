@@ -56,7 +56,6 @@
     "description": "قم بتحميل ملف JSON الخاص بك للترجمة",
     "dragText": "اسحب الملفات هنا أو انقر لتحميل",
     "supportText": "يدعم ملفات بتنسيق .json، حتى 10MB",
-    "apiKeyTip": "نصائح: مفتاح OpenAI API مطلوب للترجمة",
     "errors": {
       "selectFile": "يرجى اختيار ملف",
       "jsonExtension": "يرجى تحميل ملف بامتداد .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "تم تحميل الملف بنجاح"
     },
-    "apiKeyTitle": "مفتاح OpenAI API",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "خطأ",
     "successTitle": "نجاح"
   },
@@ -81,11 +78,9 @@
     "translating": "يتم الترجمة...",
     "cancel": "إلغاء",
     "uploadFirst": "يرجى تحميل ملف أولاً",
-    "enterApiKey": "يرجى إدخال مفتاح API",
     "foundUnfinished": "تم العثور على ترجمة غير مكتملة",
     "continueTranslation": "تابع الترمة",
     "translationCancelled": "تم إلغاء الترجمة",
-    "invalidApiKey": "تنسيق مفتاح API غير صالح",
     "errorTitle": "خطأ",
     "successTitle": "نجاح",
     "translationCompleted": "تمت الترجمة!",
@@ -103,13 +98,7 @@
     "bytes": "بايت",
     "kb": "كيلوبايت",
     "mb": "ميغابايت",
-    "gb": "جيجابايت",
-    "apiKeyErrors": {
-      "invalidFormat": "تنسيق مفتاح API غير صالح",
-      "invalidOrExpired": "مفتاح API غير صالح أو منتهي الصلاحية",
-      "rateLimitReached": "تم الوصول إلى حد معدل API",
-      "validationFailed": "فشل التحقق من مفتاح API"
-    }
+    "gb": "جيجابايت"
   },
   "jsonPreview": {
     "title": "معاينة",

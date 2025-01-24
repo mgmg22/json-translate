@@ -56,7 +56,6 @@
       "description": "Tải lên tệp JSON của bạn để dịch",
       "dragText": "Kéo tệp vào đây hoặc nhấp để tải lên",
       "supportText": "Hỗ trợ tệp định dạng .json, tối đa 10MB",
-      "apiKeyTip": "Mẹo: Cần có OpenAI API Key để dịch",
       "errors": {
         "selectFile": "Vui lòng chọn một tệp",
         "jsonExtension": "Vui lòng tải lên tệp có phần mở rộng .json",
@@ -67,8 +66,6 @@
       "success": {
         "uploaded": "Tải lên tệp thành công"
       },
-      "apiKeyTitle": "OpenAI API Key",
-      "apiKeyPlaceholder": "sk-...",
       "errorTitle": "Lỗi",
       "successTitle": "Thành công"
     },
@@ -81,11 +78,9 @@
       "translating": "Đang dịch...",
       "cancel": "Hủy",
       "uploadFirst": "Vui lòng tải lên tệp trước",
-      "enterApiKey": "Vui lòng nhập API Key",
       "foundUnfinished": "Tìm thấy bản dịch chưa hoàn thành",
       "continueTranslation": "Tiếp tục dịch",
       "translationCancelled": "Đã hủy dịch",
-      "invalidApiKey": "Định dạng API Key không hợp lệ",
       "errorTitle": "Lỗi",
       "successTitle": "Thành công",
       "translationCompleted": "Dịch hoàn thành!",
@@ -103,13 +98,7 @@
       "bytes": "Byte",
       "kb": "KB",
       "mb": "MB",
-      "gb": "GB",
-      "apiKeyErrors": {
-        "invalidFormat": "Định dạng khóa API không hợp lệ",
-        "invalidOrExpired": "Khóa API không hợp lệ hoặc đã hết hạn",
-        "rateLimitReached": "Đã đạt giới hạn gọi API",
-        "validationFailed": "Xác thực khóa API thất bại"
-      }
+      "gb": "GB"
     },
     "jsonPreview": {
       "title": "Xem trước",

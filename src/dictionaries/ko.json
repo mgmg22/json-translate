@@ -56,7 +56,6 @@
     "description": "번역을 위해 JSON 파일을 업로드하세요",
     "dragText": "여기에 파일을 드래그하거나 클릭하여 업로드",
     "supportText": ".json 형식 파일 지원, 최대 10MB",
-    "apiKeyTip": "팁: 번역을 위해 OpenAI API 키가 필요합니다",
     "errors": {
       "selectFile": "파일을 선택하세요",
       "jsonExtension": ".json 확장자를 가진 파일을 업로드하세요",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "파일이 성공적으로 업로드되었습니다."
     },
-    "apiKeyTitle": "OpenAI API 키",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "오류",
     "successTitle": "성공"
   },
@@ -81,11 +78,9 @@
     "translating": "번역 중...",
     "cancel": "취소",
     "uploadFirst": "먼저 파일을 업로드하세요",
-    "enterApiKey": "API 키를 입력하세요",
     "foundUnfinished": "완료되지 않은 번역이 발견되었습니다",
     "continueTranslation": "번역 계속하기",
     "translationCancelled": "번역이 취소되었습니다",
-    "invalidApiKey": "유효하지 않은 API 키 형식",
     "errorTitle": "오류",
     "successTitle": "성공",
     "translationCompleted": "번역이 완료되었습니다!",
@@ -103,13 +98,7 @@
     "bytes": "바이트",
     "kb": "KB",
     "mb": "MB",
-    "gb": "GB",
-    "apiKeyErrors": {
-      "invalidFormat": "잘못된 API 키 형식",
-      "invalidOrExpired": "유효하지 않거나 만료된 API 키",
-      "rateLimitReached": "API 호출 한도에 도달했습니다",
-      "validationFailed": "API 키 검증 실패"
-    }
+    "gb": "GB"
   },
   "jsonPreview": {
     "title": "미리보기",

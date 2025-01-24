@@ -56,7 +56,6 @@
     "description": "อัปโหลดไฟล์ JSON ของคุณเพื่อการแปล",
     "dragText": "ลากไฟล์มาที่นี่หรือคลิกเพื่ออัปโหลด",
     "supportText": "รองรับไฟล์รูปแบบ .json ขนาดสูงสุด 10MB",
-    "apiKeyTip": "เคล็ดลับ: ต้องใช้ OpenAI API Key สำหรับการแปล",
     "errors": {
       "selectFile": "กรุณาเลือกไฟล์",
       "jsonExtension": "กรุณาอัปโหลดไฟล์ที่มีนามสกุล .json",
@@ -67,8 +66,6 @@
     "success": {
       "uploaded": "อัปโหลดไฟล์สำเร็จ"
     },
-    "apiKeyTitle": "OpenAI API Key",
-    "apiKeyPlaceholder": "sk-...",
     "errorTitle": "ข้อผิดพลาด",
     "successTitle": "สำเร็จ"
   },
@@ -81,11 +78,9 @@
     "translating": "กำลังแปล...",
     "cancel": "ยกเลิก",
     "uploadFirst": "กรุณาอัปโหลดไฟล์ก่อน",
-    "enterApiKey": "กรุณาใส่ API Key",
     "foundUnfinished": "พบการแปลที่ยังไม่เสร็จ",
     "continueTranslation": "ดำเนินการแปลต่อ",
     "translationCancelled": "การแปลถูกยกเลิก",
-    "invalidApiKey": "รูปแบบ API Key ไม่ถูกต้อง",
     "errorTitle": "ข้อผิดพลาด",
     "successTitle": "สำเร็จ",
     "translationCompleted": "การแปลเสร็จสิ้นแล้ว!",
@@ -103,13 +98,7 @@
     "bytes": "ไบต์",
     "kb": "กิโลไบต์",
     "mb": "เมกะไบต์",
-    "gb": "กิกะไบต์",
-    "apiKeyErrors": {
-      "invalidFormat": "รูปแบบคีย์ API ไม่ถูกต้อง",
-      "invalidOrExpired": "คีย์ API ไม่ถูกต้องหรือหมดอายุ",
-      "rateLimitReached": "ถึงขีดจำกัดการเรียก API แล้ว",
-      "validationFailed": "การตรวจสอบคีย์ API ล้มเหลว"
-    }
+    "gb": "กิกะไบต์"
   },
   "jsonPreview": {
     "title": "ตัวอย่าง",
