@@ -107,6 +107,12 @@ npm run build
 npm run start
 ```
 
+### Config default select language
+
+```bash
+  const [selectedLangs, setSelectedLangs] = useState<string[]>(['de', 'es', 'fr',])
+```
+
 ## 📖 Usage Guide
 
 1. **Preparation**

@@ -531,7 +531,7 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
           {commonLanguages.map(option => (
             <label
               key={option.value}
-              className={`flex items-center justify-center px-4 py-2 rounded cursor-pointer transition-colors text-sm ${selectedLangs.includes(option.value)
+              className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer transition-colors text-sm ${selectedLangs.includes(option.value)
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-muted hover:bg-muted/80'
                 }`}
@@ -574,7 +574,7 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
             {moreLanguages.map(option => (
               <label
                 key={option.value}
-                className={`flex items-center justify-center px-4 py-2 rounded cursor-pointer transition-colors text-sm ${selectedLangs.includes(option.value)
+                className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer transition-colors text-sm ${selectedLangs.includes(option.value)
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-muted hover:bg-muted/80'
                   }`}
@@ -591,7 +591,7 @@ export function TranslatePanel({ dict }: TranslatePanelProps) {
                     }
                   }}
                 />
-                <span>{option.label}</span>
+                <span>{option.label}({option.value})</span>
               </label>
             ))}
           </div>
